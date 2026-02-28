@@ -351,6 +351,35 @@
             "before": [
                 "<leader>",
                 "s",
+                "s"
+            ],
+            "commands": [
+                "workbench.view.extension.objectExplorer"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "s"
+            ],
+            "commands": [
+                "workbench.action.toggleSidebarVisibility"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "s",
+                "q"
+            ],
+            "commands": [
+                "mssql.newQuery"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "s",
                 "g"
             ],
             "commands": [
@@ -374,6 +403,35 @@
             ],
             "commands": [
                 "workbench.view.explorer"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "a"
+            ],
+            "commands": [
+                "workbench.action.chat.open"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "u",
+                "s"
+            ],
+            "commands": [
+                "workbench.action.toggleSidebarVisibility"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "u",
+                "a"
+            ],
+            "commands": [
+                "workbench.action.toggleAuxiliaryBar"
             ]
         },
         {
