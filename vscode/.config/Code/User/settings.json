@@ -658,6 +658,7 @@
             ]
         }
     ],
+    "mssql.openQueryResultsInTabByDefault": true,
     "mssql.connectionGroups": [
         {
             "name": "ROOT",

@@ -1,0 +1,135 @@
+set $mod Mod4
+set $term wezterm
+
+set $bg        #1a1b26
+set $bg-alt    #24283b
+set $fg        #c0caf5
+set $blue      #7aa2f7
+set $purple    #bb9af7
+set $cyan      #7dcfff
+set $green     #9ece6a
+set $red       #f7768e
+set $yellow    #e0af68
+
+font pango:JetBrainsMono Nerd Font 10
+default_orientation horizontal
+
+default_border pixel 2
+default_floating_border pixel 2
+hide_edge_borders both
+
+client.focused          $blue   $blue   $bg   $purple
+client.unfocused        $bg-alt $bg-alt $fg   $bg-alt
+client.focused_inactive $bg-alt $bg-alt $fg   $bg-alt
+client.urgent           $red    $red    $bg   $red
+
+workspace 1 output HDMI-0
+workspace 2 output HDMI-0
+workspace 3 output HDMI-0
+workspace 4 output HDMI-0
+workspace 5 output HDMI-0
+workspace 6 output HDMI-0
+workspace 9 output DP-0
+
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+9 workspace 9
+
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+9 move container to workspace 9
+
+bindsym $mod+space exec rofi -show drun
+bindsym $mod+d exec rofi -show drun
+bindsym $mod+Tab exec rofi -show window
+
+bindsym $mod+Shift+c reload
+bindsym $mod+Control+Shift+c exec code
+bindsym $mod+Shift+b exec brave-browser
+bindsym $mod+Shift+s exec spotify
+bindsym $mod+Shift+z exec zoom
+bindsym $mod+Shift+t exec flatpak run com.todoist.Todoist
+bindsym $mod+Shift+o exec obsidian
+bindsym $mod+Shift+n exec --no-startup-id sh -c 'if command -v x-terminal-emulator >/dev/null 2>&1; then x-terminal-emulator -e nmtui; elif command -v wezterm >/dev/null 2>&1; then wezterm start -- nmtui; elif command -v alacritty >/dev/null 2>&1; then alacritty -e nmtui; fi'
+bindsym $mod+Shift+p exec --no-startup-id blueman-manager
+bindsym $mod+Control+d exec --no-startup-id setxkbmap -layout de -option ""
+bindsym $mod+Control+u exec --no-startup-id setxkbmap -layout us -variant colemak -option ""
+
+bindsym $mod+Return exec $term
+bindsym $mod+w kill
+bindsym $mod+Shift+e exec "i3-msg exit"
+bindsym $mod+Shift+r restart
+bindsym $mod+Control+l exec --no-startup-id i3lock -c 1a1b26
+bindsym $mod+f fullscreen toggle
+bindsym $mod+s layout stacking
+bindsym $mod+t layout tabbed
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+a focus parent
+bindsym $mod+r mode "resize"
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+bindsym $mod+v split h
+bindsym $mod+x split v
+bindsym $mod+Shift+v split v
+bindsym $mod+Shift+x split h
+bindsym $mod+Control+v exec --no-startup-id copyq menu
+bindsym --release F11 exec --no-startup-id wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindsym --release F12 exec --no-startup-id wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+bindsym --release F13 exec --no-startup-id wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindcode --release 123 exec --no-startup-id wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+bindcode --release 122 exec --no-startup-id wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindcode --release 121 exec --no-startup-id wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer -i 5
+bindsym XF86AudioLowerVolume exec --no-startup-id pamixer -d 5
+bindsym XF86AudioMute exec --no-startup-id pamixer -t
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioMicMute exec --no-startup-id wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
+bindsym --release $mod+Shift+y exec --no-startup-id ~/.config/i3/scripts/screenshot-full.sh
+bindsym --release $mod+Shift+u exec --no-startup-id ~/.config/i3/scripts/screenshot-area.sh
+
+mode "resize" {
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym j resize grow height 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
+
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
+}
+
+exec --no-startup-id nm-applet
+exec --no-startup-id dunst
+exec --no-startup-id copyq --start-server
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -c 1a1b26
+exec_always --no-startup-id setxkbmap -layout de,us -variant ,colemak -option grp:alt_shift_toggle
+exec_always --no-startup-id xrandr --output DP-0 --off && xrandr --output HDMI-0 --primary --mode 2560x1440 --pos 0x0 --rotate normal && xrandr --output DP-0 --mode 2560x1440 --pos 2560x0 --rotate normal
+exec_always --no-startup-id feh --bg-max "$HOME/Pictures/background.jpg"
+bar {
+    mode invisible
+}
+
+exec_always --no-startup-id sh -c 'pkill polybar; polybar main'

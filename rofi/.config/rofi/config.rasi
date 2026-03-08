@@ -1,0 +1,167 @@
+configuration {
+    modi: "drun,run,window,combi";
+    show-icons: true;
+    disable-history: true;
+    drun-display-format: "{icon}  {name}";
+    display-drun: "Apps";
+    display-run: "Run";
+    display-window: "Windows";
+    display-combi: "All";
+    sidebar-mode: true;
+    font: "JetBrainsMono Nerd Font 12";
+}
+
+* {
+    bg: rgba(26, 27, 38, 94%);
+    bg-alt: #24283b;
+    fg: #c0caf5;
+    muted: #7a83a8;
+    accent: #7aa2f7;
+    border: #3d59a1;
+    selected-bg: #2a3044;
+    selected-fg: #e5e9f0;
+
+    background-color: transparent;
+    text-color: @fg;
+}
+
+window {
+    location: center;
+    anchor: center;
+    width: 44%;
+    border: 2px;
+    border-color: @border;
+    border-radius: 0px;
+    background-color: @bg;
+    padding: 20px;
+}
+
+mainbox {
+    spacing: 10px;
+    background-color: transparent;
+}
+
+inputbar {
+    children: [entry];
+    spacing: 0px;
+    padding: 10px 12px;
+    background-color: @bg-alt;
+}
+
+prompt {
+    enabled: false;
+}
+
+entry {
+    placeholder: "Search...";
+    placeholder-color: @muted;
+    text-color: @fg;
+    background-color: transparent;
+    cursor: text;
+}
+
+listview {
+    lines: 9;
+    columns: 1;
+    cycle: true;
+    dynamic: true;
+    scrollbar: false;
+    spacing: 6px;
+    background-color: transparent;
+}
+
+element {
+    padding: 10px 12px;
+    border: 0px;
+    background-color: transparent;
+}
+
+element normal.normal,
+element normal.active,
+element normal.urgent,
+element alternate.normal,
+element alternate.active,
+element alternate.urgent {
+    background-color: transparent;
+    text-color: @fg;
+}
+
+element selected {
+    background-color: @selected-bg;
+}
+
+element normal.urgent,
+element alternate.urgent,
+element normal.active,
+element alternate.active {
+    background-color: transparent;
+}
+
+element selected.normal,
+element selected.urgent,
+element selected.active {
+    background-color: @selected-bg;
+}
+
+element-icon {
+    size: 1.1em;
+    vertical-align: 0.5;
+}
+
+element-text {
+    text-color: @fg;
+}
+
+element-text normal.normal,
+element-text normal.active,
+element-text normal.urgent,
+element-text alternate.normal,
+element-text alternate.active,
+element-text alternate.urgent {
+    text-color: @fg;
+}
+
+element-text selected {
+    text-color: @selected-fg;
+}
+
+element-text normal.urgent,
+element-text alternate.urgent,
+element-text normal.active,
+element-text alternate.active {
+    text-color: @fg;
+}
+
+element-text selected.urgent,
+element-text selected.active {
+    text-color: @selected-fg;
+}
+
+element-icon selected {
+    text-color: @selected-fg;
+}
+
+element-icon normal.normal,
+element-icon normal.active,
+element-icon normal.urgent,
+element-icon alternate.normal,
+element-icon alternate.active,
+element-icon alternate.urgent {
+    text-color: @fg;
+}
+
+mode-switcher {
+    spacing: 8px;
+    background-color: transparent;
+}
+
+button {
+    padding: 4px 10px;
+    background-color: transparent;
+    text-color: @muted;
+}
+
+button selected {
+    background-color: @selected-bg;
+    text-color: @selected-fg;
+}
